@@ -78,24 +78,24 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
         compatible = "zmk,combos";
 
         Copy {
-            bindings = <&kp LG(C)>
-            key-positions = <LB3 LB2>
-        }
+            bindings = <&kp LG(C)>;
+            key-positions = <LB3 LB2>;
+        };
 
         Paste {
-            bindings = <&kp LG(V)>
-            key-positions = <LB2 LB1>
-        }
+            bindings = <&kp LG(V)>;
+            key-positions = <LB2 LB1>;
+        };
         
         Cut {
-            bindings = <&kp LG(X)>
-            key-positions = <LB3 LB1>
-        }
+            bindings = <&kp LG(X)>;
+            key-positions = <LB3 LB1>;
+        };
 
         Escape {
-            bindings = <&kp ESC>
-            key-positions = <LM3 LM1>
-        }
+            bindings = <&kp ESC>;
+            key-positions = <LM3 LM1>;
+        };
     };
 
     keymap {
