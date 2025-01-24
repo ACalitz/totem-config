@@ -164,7 +164,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
             then-layer = <FUN>;
         };
 
-        FunctionLayer {
+        UtilityLayer {
             if-layers = <NAV SYM>;
             then-layer = <UTL>;
         };
