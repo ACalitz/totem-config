@@ -66,10 +66,10 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
 // Double tap keys
-ZMK_TAP_DANCE(5_lpar, bindings = <&kp N5>, <&kp LPAR>;
+ZMK_TAP_DANCE(n5_lpar, bindings = <&kp N5>, <&kp LPAR>;
               tapping-term-ms = <200>;)
 
-ZMK_TAP_DANCE(6_rpar, bindings = <&kp N6>, <&kp RPAR>;
+ZMK_TAP_DANCE(n6_rpar, bindings = <&kp N6>, <&kp RPAR>;
               tapping-term-ms = <200>;)
 
 ZMK_TAP_DANCE(f1_f11, bindings = <&kp F1>, <&kp F11>;
@@ -187,7 +187,7 @@ ZMK_TAP_DANCE(f2_f12, bindings = <&kp F2>, <&kp F12>;
 
         Number {
             bindings = <
-        &kp N1  &kp N2     &kp N3     &kp N4    &5_lpar     &6_rpar    &kp N7  &kp N8  &kp N9  &kp N0
+        &kp N1  &kp N2     &kp N3     &kp N4    &n5_lpar     &n6_rpar    &kp N7  &kp N8  &kp N9  &kp N0
         &none   &kp EQUAL  &kp MINUS  &kp PLUS  &kp LBKT    &kp RBKT  &kp N4  &kp N5  &kp N6  &none
 &trans  &none   &none      &kp SLASH  &kp STAR  &kp LBRC    &kp RBRC  &kp N1  &kp N2  &kp N3  &none  &none
                            &trans     &trans    CANCEL      &trans    &trans  &trans
