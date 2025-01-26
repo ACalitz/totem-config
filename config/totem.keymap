@@ -94,73 +94,73 @@ ZMK_TAP_DANCE(f2_f12, bindings = <&kp F2>, <&kp F12>;
         Copy {
             bindings = <&kp LG(C)>;
             key-positions = <LB3 LB2>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         Paste {
             bindings = <&kp LG(V)>;
             key-positions = <LB2 LB1>;
-            layers = <BASE>
+            layers = <BASE>;
         };
         
         Cut {
             bindings = <&kp LG(X)>;
             key-positions = <LB3 LB1>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         Escape {
             bindings = <&kp ESC>;
             key-positions = <LM2 LM1>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         Tab {
             bindings = <&kp TAB>;
             key-positions = <LM3 LM2>;
-            layers = <BASE>
+            layers = <BASE>;
         };
         
         ShiftTab {
             bindings = <&kp LS(TAB)>;
             key-positions = <LM4 LM3>;
-            layers = <BASE>
+            layers = <BASE>;
         };
         
         Enter {
             bindings = <&kp LS(TAB)>;
             key-positions = <RM1 RM2>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         Backspace {
             bindings = <&kp LS(TAB)>;
             key-positions = <RM2 RM3>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         Delete {
             bindings = <&kp LS(TAB)>;
             key-positions = <RM3 RM4>;
-            layers = <BASE>
+            layers = <BASE>;
         };
 
         PageUp {
             bindings = <&kp PG_UP>;
             key-positions = <RT1 RM1>;
-            layers = <NAV>
+            layers = <NAV>;
         };
 
         PageDown {
             bindings = <&kp PG_DN>;
             key-positions = <RM1 RB1>;
-            layers = <NAV>
+            layers = <NAV>;
         };
 
         BtClear {
             bindings = <&bt BT_CLR>;
             key-positions = <LM0 RM0>;
-            layers = <FUN>
+            layers = <FUN>;
         };
     };
 
