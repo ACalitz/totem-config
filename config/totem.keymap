@@ -22,9 +22,7 @@
 #define BASE        0
 #define NAV         1
 #define NUM         2
-#define SYM         3
-#define FUN         4
-#define UTL         5
+#define FUN         3
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left hand
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right hand
@@ -50,6 +48,14 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced";
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
               tapping-term-ms = <200>;)
 
+// Tap: space | double-tap: nav-word | Hold: nav-layer.
+#define SPACE_NAV &space_nav NAV 0
+ZMK_HOLD_TAP(space_nav, bindings = <&mo>, <&nav_dance>; flavor = "balanced";
+             tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+ZMK_TAP_DANCE(nav_dance, bindings = <&kp SPACE>, <&nav_word>;
+              tapping-term-ms = <200>;)
+
+// Home row mods
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
@@ -59,28 +65,102 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
+// Double tap keys
+ZMK_TAP_DANCE(5_lpar, bindings = <&kp N5>, <&kp LPAR>;
+              tapping-term-ms = <200>;)
+
+ZMK_TAP_DANCE(6_rpar, bindings = <&kp N6>, <&kp RPAR>;
+              tapping-term-ms = <200>;)
+
+ZMK_TAP_DANCE(f1_f11, bindings = <&kp F1>, <&kp F11>;
+              tapping-term-ms = <200>;)
+
+ZMK_TAP_DANCE(f2_f12, bindings = <&kp F2>, <&kp F12>;
+              tapping-term-ms = <200>;)
+
 / {
+    behaviors {
+        nav_word: nav_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <LEFT DOWN UP RIGHT PG_DN PG_UP>;
+            ignore-modifiers;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
         Copy {
             bindings = <&kp LG(C)>;
             key-positions = <LB3 LB2>;
+            layers = <BASE>
         };
 
         Paste {
             bindings = <&kp LG(V)>;
             key-positions = <LB2 LB1>;
+            layers = <BASE>
         };
         
         Cut {
             bindings = <&kp LG(X)>;
             key-positions = <LB3 LB1>;
+            layers = <BASE>
         };
 
         Escape {
             bindings = <&kp ESC>;
-            key-positions = <LM3 LM1>;
+            key-positions = <LM2 LM1>;
+            layers = <BASE>
+        };
+
+        Tab {
+            bindings = <&kp TAB>;
+            key-positions = <LM3 LM2>;
+            layers = <BASE>
+        };
+        
+        ShiftTab {
+            bindings = <&kp LS(TAB)>;
+            key-positions = <LM4 LM3>;
+            layers = <BASE>
+        };
+        
+        Enter {
+            bindings = <&kp LS(TAB)>;
+            key-positions = <RM1 RM2>;
+            layers = <BASE>
+        };
+
+        Backspace {
+            bindings = <&kp LS(TAB)>;
+            key-positions = <RM2 RM3>;
+            layers = <BASE>
+        };
+
+        Delete {
+            bindings = <&kp LS(TAB)>;
+            key-positions = <RM3 RM4>;
+            layers = <BASE>
+        };
+
+        PageUp {
+            bindings = <&kp PG_UP>;
+            key-positions = <RT1 RM1>;
+            layers = <NAV>
+        };
+
+        PageDown {
+            bindings = <&kp PG_DN>;
+            key-positions = <RM1 RB1>;
+            layers = <NAV>
+        };
+
+        BtClear {
+            bindings = <&bt BT_CLR>;
+            key-positions = <LM0 RM0>;
+            layers = <FUN>
         };
     };
 
@@ -89,55 +169,37 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
         Base {
             bindings = <
-         &kp Q  &kp W  &kp E  &kp R           &kp T    &kp Y  &kp U      &kp I          &kp O    &kp P
-         &kp A  &hml LCTRL S  &hml LALT D  &hml LGUI F           &kp G    &kp H  &hmr RGUI J      &hmr RALT K          &hmr RCTRL L    &kp SEMICOLON
-&kp TAB  &kp Z  &kp X  &kp C  &kp V           &kp B    &kp N  &kp M      &kp COMMA      &kp DOT  &kp SLASH      &kp ENTER
-                       &mo SYM  &smart_shft  SMART_NUM    &mo NAV  &hmr MEH SPACE  &hmr HYP BACKSPACE
+              &kp Q         &kp W     &kp E     &kp R        &kp T      &kp Y          &kp U         &kp I      &kp O    &kp P
+              &kp A         &kp S     &kp D     &kp F        &kp G      &kp H          &kp J         &kp K      &kp L    &kp SEMICOLON
+&smart_shift  &hml LCTRL Z  &kp X     &kp C     &kp V        &kp B      &kp N          &kp M         &kp COMMA  &kp DOT  &kp SLASH      &kp SQT
+                            &kp LALT  &kp LGUI  SMART_NUM    SPACE_NAV  &hmr MEH BSPC  &hmr HYP RET
             >;
         };
 
         Navigation {
             bindings = <
-       &none  &none     &kp UP_ARROW  &none      &kp LBRC    &kp RBRC  &none          &none          &none      &none
-       &none  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LBKT    &kp RBKT  &kp RIGHT_GUI  &kp RIGHT_ALT  &kp RCTRL  &none
-&none  &none  &none     &none         &none      &kp LPAR    &kp RPAR  &none          &none          &none      &none  &none
-                        &none         &none      &none       &none     &none          &none
+        &none  &none  &none   &none   &none     &none     &none     &none   &none      &none
+        &none  &none  &none   &none   &none     &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none
+&trans  &none  &none  &none   &none   &none     &none     &none     &none   &none      &none  &none
+                      &trans  &trans  &trans    CANCEL    &trans    &trans
             >;
         };
 
         Number {
             bindings = <
-        &trans     &trans    &trans        &trans        &trans       &trans  &kp N7  &kp N8  &kp N9  &trans
-        &kp EQUAL  &kp FSLH  &kp LS(STAR)  &kp LS(PLUS)  &kp MINUS    &kp N0  &kp N4  &kp N5  &kp N6  &trans
-&trans  &trans     &trans    &trans        &trans        &trans       &none   &kp N1  &kp N2  &kp N3  &trans  &trans
-                             &trans        &trans        CANCEL       &trans  &trans  &trans
-            >;
-        };
-
-        Symbol {
-            bindings = <
-        &kp EXCL  &kp AT     &kp HASH      &kp DOLLAR    &kp PERCENT    &kp CARET  &kp AMPERSAND   &kp ASTERISK  &kp SQT   &kp DQT
-        &none     &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &none          &none      &none           &none         &none     &kp BSLH
-&trans  &none     &none      &none         &none         &none          &kp MINUS  &kp UNDERSCORE  &kp TILDE     &kp PIPE  &kp SLASH  &kp HOME
-                             &trans        &trans        &trans         &trans     &trans          &trans
+        &kp N1  &kp N2     &kp N3     &kp N4    &5_lpar     &6_rpar    &kp N7  &kp N8  &kp N9  &kp N0
+        &none   &kp EQUAL  &kp MINUS  &kp PLUS  &kp LBKT    &kp RBKT  &kp N4  &kp N5  &kp N6  &none
+&trans  &none   &none      &kp SLASH  &kp STAR  &kp LBRC    &kp RBRC  &kp N1  &kp N2  &kp N3  &none  &none
+                           &trans     &trans    CANCEL      &trans    &trans  &trans
             >;
         };
 
         Function {
             bindings = <
-        &kp K_POWER  &none       &kp C_VOL_UP  &kp C_PLAY_PAUSE  &none    &none  &kp F7  &kp F8  &kp F9  &kp F10
-        &none        &kp C_PREV  &kp C_VOL_DN     &kp C_NEXT        &none    &none  &kp F4  &kp F5  &kp F6  &kp F11
-&trans  &none        &none       &kp C_MUTE       &none             &none    &none  &kp F1  &kp F2  &kp F3  &kp F12  &none
-                                 &none            &none             &none    &none  &none   &none
-            >;
-        };
-
-        Utility {
-            bindings = <
-        &trans  &trans  &trans  &trans  &bt BT_CLR    &trans  &trans        &trans        &trans        &trans
-        &trans  &trans  &trans  &trans  &trans        &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3
-&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans        &trans        &trans        &trans        &trans
-                        &trans  &trans  &trans        &trans  &trans        &trans
+             &f1_f11       &f2_f12       &kp F3        &kp F4        &kp F5    &kp F6     &kp F7          &kp F8     &kp F9    &kp F10
+             &none         &none         &none         &none         &none     &none      &none           &none      &none     &kp BSLH
+&kp K_POWER  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none     &kp MINUS  &kp UNDERSCORE  &kp TILDE  &kp PIPE  &kp SLASH  &kp GRAVE
+                                        &trans         &trans        &none     &none      &trans          &trans
             >;
         };
     };
@@ -148,11 +210,6 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
         FunctionLayer {
             if-layers = <NAV NUM>;
             then-layer = <FUN>;
-        };
-
-        UtilityLayer {
-            if-layers = <NAV SYM>;
-            then-layer = <UTL>;
         };
     };
 };
