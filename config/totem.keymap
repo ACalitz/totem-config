@@ -171,7 +171,7 @@ ZMK_TAP_DANCE(f2_f12, bindings = <&kp F2>, <&kp F12>;
             bindings = <
               &kp Q         &kp W     &kp E     &kp R        &kp T      &kp Y          &kp U         &kp I      &kp O    &kp P
               &kp A         &kp S     &kp D     &kp F        &kp G      &kp H          &kp J         &kp K      &kp L    &kp SEMICOLON
-&smart_shift  &hml LCTRL Z  &kp X     &kp C     &kp V        &kp B      &kp N          &kp M         &kp COMMA  &kp DOT  &kp SLASH      &kp SQT
+&smart_shft   &hml LCTRL Z  &kp X     &kp C     &kp V        &kp B      &kp N          &kp M         &kp COMMA  &kp DOT  &kp SLASH      &kp SQT
                             &kp LALT  &kp LGUI  SMART_NUM    SPACE_NAV  &hmr MEH BSPC  &hmr HYP RET
             >;
         };
