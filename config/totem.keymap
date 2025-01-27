@@ -52,7 +52,7 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
 #define SPACE_NAV &space_nav NAV 0
 ZMK_HOLD_TAP(space_nav, bindings = <&mo>, <&nav_dance>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_TAP_DANCE(nav_dance, bindings = <&kp SPACE>, <&nav_word>;
+ZMK_TAP_DANCE(nav_dance, bindings = <&kp SPACE>, <&nav_word NAV>;
               tapping-term-ms = <200>;)
 
 // Home row mods
