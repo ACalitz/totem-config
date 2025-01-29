@@ -165,7 +165,7 @@ ZMK_TAP_DANCE(f2_f12, bindings = <&kp F2>, <&kp F12>;
         
         BtClearAll {
             bindings = <&bt BT_CLR_ALL>;
-            key-positions = <LTM0 RT0>;
+            key-positions = <LT0 RT0>;
             layers = <FUN>;
         };
     };
